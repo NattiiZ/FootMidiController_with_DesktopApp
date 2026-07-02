@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>MIDI Foot Controller</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="titlebar">
+
+        <div class="connection">
+
+            <span class="status-dot"></span>
+
+            <span id="connectionText">
+
+                Searching...
+
+            </span>
+
+        </div>
+
+        <div class="title-buttons">
+
+            <button id="btnMin">─</button>
+            <button id="btnClose">✕</button>
+
+        </div>
+
+    </div>
+
+    <div id="splash">
+
+        <h1>FM-4 Controller</h1>
+
+        <div id="statusText">Searching device...</div>
+
+        <!-- NEW: progress -->
+        <div id="progressWrap">
+            <div id="progressBar"></div>
+        </div>
+
+    </div>
+
+
+    <div id="app" class="app">
+
+
+        <!-- ========================= -->
+        <!-- FS BAR -->
+        <!-- ========================= -->
+
+        <section class="toolbar">
+
+            <div class="toolbar-top">
+
+                <div class="program-title">
+                    <span class="brand-name">SANDANSOL</span>
+                    <span class="brand-model">FM&#8209;4</span>
+                </div>
+
+                <div class="toolbar-actions">
+
+                    <button class="tool-btn">
+                        <span class="tool-icon">⭱</span> Backup
+                    </button>
+
+                    <button class="tool-btn">
+                        <span class="tool-icon">⭳</span> Recall
+                    </button>
+
+                    <button class="setting-btn">
+                        <span class="tool-icon">⚙</span> Settings
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- FS BAR (moved below toolbar) -->
+        <!-- ========================= -->
+
+        <section class="fs-bar">
+
+            <div class="fs-group">
+
+                <button class="fs active">
+                    <span class="fs-num">FS1</span>
+                </button>
+                <button class="fs">
+                    <span class="fs-num">FS2</span>
+                </button>
+                <button class="fs">
+                    <span class="fs-num">FS3</span>
+                </button>
+                <button class="fs">
+                    <span class="fs-num">FS4</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- MAIN PANEL -->
+        <!-- ========================= -->
+
+        <main class="content">
+
+            <!-- MODE TAB -->
+
+            <div class="mode-tabs">
+
+                <button class="mode active">
+
+                    SNAP MODE
+
+                </button>
+
+                <button class="mode">
+
+                    FREE MODE
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SNAP PANEL -->
+
+            <section
+                id="snapPanel"
+                class="panel active">
+
+                <div class="stage-grid">
+
+                    <!-- STAGE 1 -->
+
+                    <div class="stage-card">
+
+                        <h3>
+
+                            Stage 1
+
+                        </h3>
+
+                        <div class="field">
+
+                            <label>
+
+                                Program Change PC#
+
+                            </label>
+
+                            <input id="pc1" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                Control Change CC#
+
+                            </label>
+
+                            <input id="cc1" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                CC Value (ON)
+
+                            </label>
+
+                            <input id="on1" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                CC Value (OFF)
+
+                            </label>
+
+                            <input id="off1" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- STAGE 2 -->
+
+                    <div class="stage-card">
+
+                        <h3>
+
+                            Stage 2
+
+                        </h3>
+
+                        <div class="field">
+
+                            <label>
+
+                                Program Change PC#
+
+                            </label>
+
+                            <input id="pc2" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                Control Change CC#
+
+                            </label>
+
+                            <input id="cc2" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                CC Value (ON)
+
+                            </label>
+
+                            <input id="on2" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>
+
+                                CC Value (OFF)
+
+                            </label>
+
+                            <input id="off2" type="number" min="0" max="127" placeholder="0-127">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- FREE PANEL -->
+
+            <section
+                id="freePanel"
+                class="panel">
+
+                <div class="free-grid">
+
+                    <!-- SLOT 1 -->
+
+                    <div class="free-card">
+
+                        <h3>
+                            <span>Slot 1</span>
+                            <span class="fs-badge">FS2</span>
+                        </h3>
+
+                        <div class="free-stage">
+
+                            <div>
+
+                                <h4>
+
+                                    Stage 1
+
+                                </h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+
+                                    Stage 2
+
+                                </h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SLOT 2 -->
+
+                    <div class="free-card">
+
+                        <h3>
+                            <span>Slot 2</span>
+                            <span class="fs-badge">FS3</span>
+                        </h3>
+
+                        <div class="free-stage">
+
+                            <div>
+
+                                <h4>Stage 1</h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                            <div>
+
+                                <h4>Stage 2</h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SLOT 3 -->
+
+                    <div class="free-card">
+
+                        <h3>
+                            <span>Slot 3</span>
+                            <span class="fs-badge">FS4</span>
+                        </h3>
+
+                        <div class="free-stage">
+
+                            <div>
+
+                                <h4>Stage 1</h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                            <div>
+
+                                <h4>Stage 2</h4>
+
+                                <label>CC#</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value ON</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                                <label>Value OFF</label>
+                                <input type="number" min="0" max="127" placeholder="0-127">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- ========================= -->
+        <!-- FOOTER -->
+        <!-- ========================= -->
+
+        <footer>
+
+            <button id="saveButton">
+
+                Save to Device
+
+            </button>
+
+        </footer>
+
+
+
+
+
+        <!-- ========================= -->
+        <!-- SETTINGS -->
+        <!-- ========================= -->
+
+        <div
+            id="settingsDialog"
+            class="dialog">
+
+            <div class="dialog-window">
+
+                <div class="dialog-header">
+
+                    <span>Global Settings</span>
+
+                    <button class="dialog-close">✕</button>
+
+                </div>
+
+                <div class="dialog-body">
+
+                    <div class="setting-group">
+
+                        <h3><span class="grp-icon">🎚</span> General</h3>
+
+                        <div class="field">
+
+                            <label>MIDI Channel</label>
+
+                            <select>
+
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>Hold Time (ms)</label>
+
+                            <input type="number" placeholder="500">
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-group">
+
+                        <h3><span class="grp-icon">⏻</span> Boot</h3>
+
+                        <label class="checkbox-row" for="bootEnable">
+                            <input type="checkbox" id="bootEnable">
+                            Send command on startup
+                        </label>
+
+                        <div class="field">
+
+                            <label>Boot Footswitch</label>
+
+                            <select id="bootFS">
+
+                                <option>FS1</option>
+                                <option>FS2</option>
+                                <option>FS3</option>
+                                <option>FS4</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="field">
+
+                            <label>Boot Stage</label>
+
+                            <select id="bootStage">
+
+                                <option>Stage 1</option>
+                                <option>Stage 2</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-group">
+
+                        <h3><span class="grp-icon">🎨</span> Appearance</h3>
+
+                        <div class="field field-wide">
+
+                            <label>LED Color</label>
+
+                            <select id="ledColor">
+
+                                <option>
+                                    Stage 1 = Green / Stage 2 = Red
+                                </option>
+
+                                <option>
+                                    Stage 1 = Red / Stage 2 = Green
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-group">
+
+                        <h3><span class="grp-icon">🛠</span> Maintenance</h3>
+
+                        <div class="fw">
+                            <span>Firmware Version</span>
+                            <b>2.2.0</b>
+                        </div>
+
+                        <div class="maintenance-actions">
+
+                            <button>
+                                Update Firmware
+                            </button>
+
+                            <button class="danger">
+                                Factory Reset
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="dialog-footer">
+
+                    <button class="cancel-btn">
+                        Cancel
+                    </button>
+
+                    <button class="save-btn">
+                        Save Settings
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="render.js"></script>
+
+</body>
+
+</html>

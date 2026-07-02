@@ -1,0 +1,748 @@
+/* ===========================================
+   RESET
+=========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#141414;
+    color:#ECECEC;
+    font-family:"Segoe UI",sans-serif;
+}
+
+/* ===========================================
+   APP
+=========================================== */
+
+.app{
+    display:none;
+    flex-direction:column;
+    height:calc(100vh - 38px);
+    background:#141414;
+}
+
+.app.show{
+    display:flex;
+}
+
+/* ===========================================
+   TITLE BAR
+=========================================== */
+
+.titlebar{
+    height:38px;
+    background:#202020;
+    border-bottom:1px solid #2f2f2f;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 0 0 14px;
+    user-select:none;
+    -webkit-app-region:drag;
+}
+
+.title-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+}
+
+.logo{
+    width:20px;
+    height:20px;
+}
+
+.version{
+    color:#888;
+    font-size:12px;
+}
+
+.connection{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#BFBFBF;
+    font-size:12px;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#19d36b;
+    box-shadow:0 0 8px #19d36b;
+}
+
+/* ===========================================
+   WINDOW BUTTONS
+=========================================== */
+
+.title-buttons{
+    display:flex;
+    -webkit-app-region:no-drag;
+}
+
+.title-buttons button{
+    width:48px;
+    height:38px;
+    border:none;
+    background:transparent;
+    color:#bbb;
+    font-size:14px;
+    cursor:pointer;
+    transition:.15s;
+}
+
+.title-buttons button:hover{
+    background:#333;
+    color:white;
+}
+
+#btnClose:hover{
+    background:#e81123;
+    color:white;
+}
+
+/* ===========================================
+   TOOLBAR
+=========================================== */
+
+.toolbar{
+    background:#1b1b1b;
+    border-bottom:1px solid #303030;
+    padding:20px 24px;
+    display:flex;
+    flex-direction:column;
+    flex-shrink:0;
+}
+
+.toolbar-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.program-title{
+    display:flex;
+    flex-direction:column;
+    line-height:1.05;
+}
+
+.brand-name{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:4px;
+    color:#8a8a8a;
+    text-transform:uppercase;
+}
+
+.brand-model{
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    background:linear-gradient(90deg,#0A84FF,#7dc0ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 0 14px rgba(10,132,255,.45));
+    width:fit-content;
+}
+
+.toolbar-actions{
+    display:flex;
+    gap:10px;
+}
+
+.tool-btn{
+    height:38px;
+    padding:0 16px;
+    border:none;
+    border-radius:9px;
+    background:#2d2d2d;
+    color:#ddd;
+    cursor:pointer;
+    transition:.2s;
+    font-size:13px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.tool-btn:hover{
+    background:#3a3a3a;
+    color:white;
+}
+
+.tool-icon{
+    font-size:14px;
+    opacity:.85;
+}
+
+.setting-btn{
+    height:38px;
+    padding:0 16px;
+    border:none;
+    border-radius:9px;
+    background:#323232;
+    color:white;
+    cursor:pointer;
+    transition:.2s;
+    font-size:13px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.setting-btn:hover{
+    background:#424242;
+}
+
+/* ===========================================
+   FS BAR
+=========================================== */
+
+.fs-bar{
+    background:#181818;
+    border-bottom:1px solid #303030;
+    padding:16px 24px;
+    display:flex;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.fs-group{
+    display:flex;
+    gap:10px;
+}
+
+.fs{
+    width:90px;
+    height:44px;
+    border-radius:10px;
+    border:1px solid #363636;
+    background:#262626;
+    color:#cfcfcf;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.3px;
+    cursor:pointer;
+    transition:.15s ease;
+}
+
+.fs:hover{
+    background:#333;
+    border-color:#454545;
+}
+
+.fs.active{
+    background:#0A84FF;
+    border-color:#0A84FF;
+    color:white;
+    box-shadow:0 0 16px rgba(10,132,255,.35);
+}
+
+/* ===========================================
+   CONTENT
+=========================================== */
+
+.content{
+    flex:1;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:24px;
+    min-height:0;
+}
+
+/* ===========================================
+   MODE TAB
+=========================================== */
+
+.mode-tabs{
+    display:inline-flex;
+    border:1px solid #333;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:20px;
+}
+
+.mode{
+    padding:11px 22px;
+    border:none;
+    background:none;
+    color:#BBBBBB;
+    cursor:pointer;
+    transition:.2s;
+    min-width:140px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.3px;
+}
+
+.mode:hover{
+    color:white;
+    background:#242424;
+}
+
+.mode.active{
+    color:white;
+    background:#0A84FF;
+}
+
+/* ===========================================
+   PANEL
+=========================================== */
+
+.panel{
+    display:none;
+}
+
+.panel.active{
+    display:block;
+}
+
+/* ===================================================
+   STAGE GRID
+=================================================== */
+
+.stage-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+/* ===================================================
+   CARD
+=================================================== */
+
+.stage-card,
+.free-card{
+    background:#232323;
+    border:1px solid #353535;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+    transition:.2s;
+}
+
+.stage-card:hover,
+.free-card:hover{
+    border-color:#4d4d4d;
+}
+
+/* ===================================================
+   CARD HEADER
+=================================================== */
+
+.stage-card h3,
+.free-card h3{
+    font-size:16px;
+    font-weight:600;
+    color:#ffffff;
+    background:#2b2b2b;
+    margin:-22px -22px 20px;
+    padding:14px 22px;
+    border-bottom:1px solid #3b3b3b;
+    border-radius:14px 14px 0 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.fs-badge{
+    background:#0A84FF;
+    color:white;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.4px;
+    padding:4px 9px;
+    border-radius:6px;
+}
+
+/* ===================================================
+   FIELDS
+=================================================== */
+
+.field{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:14px;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.field:last-child{
+    margin-bottom:0;
+}
+
+.field label{
+    color:#BEBEBE;
+    font-size:13px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    height:36px;
+    border-radius:8px;
+    border:1px solid #404040;
+    background:#181818;
+    color:white;
+    padding:0 10px;
+    outline:none;
+    font-size:13px;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color:#0A84FF;
+}
+
+/* ===================================================
+   FREE GRID
+=================================================== */
+
+.free-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.free-stage{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.free-stage h4{
+    color:#0A84FF;
+    margin-bottom:10px;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+}
+
+.free-stage label{
+    display:block;
+    margin-top:10px;
+    margin-bottom:5px;
+    font-size:12px;
+    color:#bfbfbf;
+}
+
+.free-stage input{
+    width:100%;
+    height:34px;
+    border-radius:8px;
+    border:1px solid #404040;
+    background:#181818;
+    color:white;
+    padding-left:10px;
+    outline:none;
+}
+
+.free-stage input:focus{
+    border-color:#0A84FF;
+}
+
+/* ===================================================
+   FOOTER
+=================================================== */
+
+footer{
+    flex:0 0 72px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#1B1B1B;
+    border-top:1px solid #303030;
+}
+
+#saveButton{
+    width:220px;
+    height:46px;
+    border:none;
+    border-radius:10px;
+    background:#0A84FF;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:0 6px 18px rgba(10,132,255,.35);
+}
+
+#saveButton:hover{
+    background:#2894ff;
+    transform:translateY(-1px);
+}
+
+/* ===================================================
+   SETTINGS DIALOG
+=================================================== */
+
+.dialog{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.dialog-window{
+    width:900px;
+    max-width:95vw;
+    max-height:88vh;
+    display:flex;
+    flex-direction:column;
+    border-radius:16px;
+    background:#202020;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.dialog-header{
+    height:56px;
+    padding:0 22px;
+    background:#272727;
+    border-bottom:1px solid #3b3b3b;
+    font-size:16px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-shrink:0;
+}
+
+.dialog-body{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    padding:20px;
+    background:#202020;
+    overflow-y:auto;
+}
+
+.setting-group{
+    background:#2b2b2b;
+    border:1px solid #3a3a3a;
+    border-radius:12px;
+    padding:18px;
+    transition:.2s;
+}
+
+.setting-group:hover{
+    border-color:#4a4a4a;
+}
+
+.setting-group h3{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:#9fc9ff;
+    margin-bottom:16px;
+    padding-bottom:10px;
+    border-bottom:1px solid #3a3a3a;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.grp-icon{
+    font-size:14px;
+    opacity:.9;
+}
+
+.setting-group .field{
+    grid-template-columns:130px 1fr;
+    margin-bottom:14px;
+}
+
+.setting-group .field:last-child{
+    margin-bottom:0;
+}
+
+.field-wide{
+    grid-template-columns:100px 1fr !important;
+}
+
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    background:#222;
+    border:1px solid #3a3a3a;
+    border-radius:8px;
+    padding:11px 12px;
+    font-size:13px;
+    color:#e0e0e0;
+    cursor:pointer;
+}
+
+.checkbox-row input{
+    width:16px;
+    height:16px;
+    accent-color:#0A84FF;
+    flex-shrink:0;
+}
+
+.fw{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#bdbdbd;
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.maintenance-actions{
+    display:flex;
+    gap:10px;
+}
+
+.setting-group button{
+    height:38px;
+    padding:0 14px;
+    border:none;
+    border-radius:8px;
+    background:#3A3A3A;
+    color:white;
+    cursor:pointer;
+    font-size:13px;
+    transition:.2s;
+    flex:1;
+}
+
+.setting-group button:hover{
+    background:#4A4A4A;
+}
+
+.danger{
+    background:#4a2323 !important;
+    color:#ff9b9b !important;
+}
+
+.danger:hover{
+    background:#b93333 !important;
+    color:white !important;
+}
+
+.dialog-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    padding:16px 22px;
+    background:#272727;
+    border-top:1px solid #3b3b3b;
+    flex-shrink:0;
+}
+
+.cancel-btn{
+    width:100px;
+    height:40px;
+    background:#383838;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.cancel-btn:hover{
+    background:#454545;
+}
+
+.save-btn{
+    width:150px;
+    height:40px;
+    background:#0A84FF;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+.save-btn:hover{
+    background:#2894ff;
+}
+
+.dialog-close{
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:8px;
+    background:transparent;
+    color:#ddd;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.dialog-close:hover{
+    background:#444;
+}
+
+/* ===================================================
+   SPLASH
+=================================================== */
+
+#splash {
+    position:fixed;
+    inset:0;
+    background:#141414;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    gap:20px;
+}
+
+
+#progressWrap{
+    width:300px;
+    height:12px;
+    background:#2a2a2a;
+    border-radius:20px;
+    overflow:hidden;
+    display:block;
+    margin-top:14px;
+    position:relative;
+}
+
+#progressBar{
+    width:0%;
+    height:100%;
+    background:#0A84FF;
+    transition:width 0.25s ease;
+}
+
+/* ===== SEARCHING WORM ===== */
+
+#progressWrap.searching #progressBar {
+    width:40%;
+    position:absolute;
+    animation:worm 1.2s linear infinite;
+    border-radius:20px;
+}
+
+@keyframes worm {
+    0% { transform: translateX(-120%); }
+    100% { transform: translateX(280%); }
+}
